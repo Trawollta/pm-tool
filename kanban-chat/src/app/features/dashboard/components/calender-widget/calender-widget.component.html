@@ -1,0 +1,11 @@
+<div class="calendar-widget">
+    <div class="calendar-header">
+      <h3>{{ currentYear }} - {{ currentMonth + 1 }}</h3>
+    </div>
+    <div class="calendar-grid">
+      <div class="calendar-cell" *ngFor="let day of days">
+        {{ day }}
+      </div>
+    </div>
+  </div>
+  
