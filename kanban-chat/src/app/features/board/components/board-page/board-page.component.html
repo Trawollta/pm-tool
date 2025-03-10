@@ -1,0 +1,79 @@
+<!-- Oberer Bereich mit Titel, Team-Infos und "Add New Member" -->
+<div class="board-header">
+  <h1>Project Board</h1>
+  <div class="board-info">
+    <div class="team-info">
+      <h2>Design Team</h2>
+      <p>Created <span>Feb 23, 2024</span></p>
+    </div>
+    <div class="privacy-status">
+      <span class="privacy-tag">Private</span>
+    </div>
+    <div class="avatar-group">
+      <!-- Beispiel-Avatare -->
+      <img src="https://i.pravatar.cc/30?img=1" alt="User 1" />
+      <img src="https://i.pravatar.cc/30?img=2" alt="User 2" />
+      <img src="https://i.pravatar.cc/30?img=3" alt="User 3" />
+    </div>
+    <button class="add-member-btn">Add New Member</button>
+  </div>
+</div>
+
+<!-- Bereich mit dem "Overview"-Dropdown und z. B. Filter-Button -->
+<div class="board-controls">
+  <div class="dropdown">
+    <button class="dropdown-toggle" (click)="toggleDropdown()">
+      Overview
+      <span class="arrow" [class.open]="showDropdown">▼</span>
+    </button>
+    <!-- Dropdown-Menü, erscheint nur, wenn showDropdown = true -->
+    <div class="dropdown-menu" *ngIf="showDropdown">
+      <button>Timeline View</button>
+      <button>Chart View</button>
+      <button>Automate</button>
+      <button>Activity</button>
+      <button>Member</button>
+    </div>
+  </div>
+  <!-- Platzhalter-Button, z. B. für Filter oder andere Aktionen -->
+  <button class="filter-button">Filter</button>
+</div>
+
+<!-- Das eigentliche Kanban-Board: vier Spalten, horizontal scrollbar auf Mobile -->
+<div class="kanban-board">
+  <!-- Spalte 1: Taskly Ready -->
+  <div class="kanban-column">
+    <h3>Taskly Ready</h3>
+    <ng-container *ngFor="let task of tasklyReady">
+      <app-task-card [task]="task"></app-task-card>
+    </ng-container>
+    <button class="add-new-card">Add new</button>
+  </div>
+
+  <!-- Spalte 2: In Progress -->
+  <div class="kanban-column">
+    <h3>In Progress</h3>
+    <ng-container *ngFor="let task of inProgress">
+      <app-task-card [task]="task"></app-task-card>
+    </ng-container>
+    <button class="add-new-card">Add new</button>
+  </div>
+
+  <!-- Spalte 3: Wait for Feedback -->
+  <div class="kanban-column">
+    <h3>Wait for Feedback</h3>
+    <ng-container *ngFor="let task of waitForFeedback">
+      <app-task-card [task]="task"></app-task-card>
+    </ng-container>
+    <button class="add-new-card">Add new</button>
+  </div>
+
+  <!-- Spalte 4: Done -->
+  <div class="kanban-column">
+    <h3>Done</h3>
+    <ng-container *ngFor="let task of done">
+      <app-task-card [task]="task"></app-task-card>
+    </ng-container>
+    <button class="add-new-card">Add new</button>
+  </div>
+</div>

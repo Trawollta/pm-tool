@@ -1,6 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 /* You can add global styles to this file, and also import other style files */
 
+@font-face {
+    font-family: 'Manrope';
+    src: url('/assets/fonts/manrope-v15-latin-regular.woff2') format('woff2'),
+         url('/assets/fonts/manrope-v15-latin-regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Manrope';
+    src: url('/assets/fonts/manrope-v15-latin-700.woff2') format('woff2'),
+         url('/assets/fonts/manrope-v15-latin-700.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
 
 /* max screen width */
 
@@ -19,12 +36,29 @@ $purple3: #535af1;
 $purple1: #444df2;
 $online_green: #92c83e;
 $rosa_error: #ed1e79;
+
+
+$primary-color1: #212121;
+$primary-color2: #3D3D3D;
+$primary-color3: #F1F7FA;
+$secondary-color1: #0998C3;
+$secondary-color2: #6BDBFD;
+$secondary-color3: #DBF5FD;
+
+$neutral-color1: #FFFFFF;
+$neutral-color1: #262626;
+$neutral-color1: #EEEEEE;
+$neutral-color1: #FAFAFA;
+
+
+
 * {
-    font-family: "Nunito";
+    font-family: "Manrope";
 }
 
 body {
     margin: 0;
+    background-color: #FAFAFA;
 }
 
 @mixin dFlex($jc: center, $ai: center, $g: 0px, $fd: row) {
@@ -75,7 +109,7 @@ body {
 html,
 body {
     height: 100%;
-    background-color: $background;
+    // background-color: $background;
 }
 
 app-root {

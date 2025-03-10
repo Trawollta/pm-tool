@@ -1,1 +1,15 @@
-<p>channel-chat works!</p>
+<div class="channel-chat">
+  <div class="channel-header">
+    
+    <h3 *ngIf="channel$ | async as channel">{{ channel.name }}</h3>
+
+    <img src="assets/icons/details.svg">
+  </div>
+
+  <app-all-messages
+    [messages]="(messages$ | async) ?? []"
+    [currentUserId]="currentUserId">
+  </app-all-messages>
+
+  <app-textarea-chat-thread></app-textarea-chat-thread>
+</div>

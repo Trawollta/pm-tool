@@ -1,0 +1,16 @@
+<div class="channel-list">
+  <div *ngIf="loading$ | async" class="loading">
+    Loading channels...
+  </div>
+  <div *ngIf="error$ | async as error" class="error">
+    {{ error }}
+  </div>
+  <ul>
+    <li *ngFor="let channel of channels$ | async" (click)="onChannelClick(channel)">
+      <div class="channel-item">
+        <strong>{{ channel.name }}</strong>
+        <p>{{ channel.description }}</p>
+      </div>
+    </li>
+  </ul>
+</div>

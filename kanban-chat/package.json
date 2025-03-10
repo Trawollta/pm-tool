@@ -24,8 +24,10 @@
     "@ngrx/store": "^19.0.1",
     "@ngrx/store-devtools": "^19.0.1",
     "express": "^4.18.2",
+    "heroicons": "^2.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "vite": "^6.2.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {

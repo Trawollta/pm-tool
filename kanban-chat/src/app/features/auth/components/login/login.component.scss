@@ -1,0 +1,120 @@
+.login-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #FAFAFA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Manrope', sans-serif;
+  }
+  
+  .login-card {
+    background: #fff;
+    width: 350px;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+  .picture {
+    width: 340px;
+    height: 300px;
+  }
+  
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+  
+    .subtitle {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: start;
+      font-weight: bold;
+      
+      label {
+        margin-bottom: 0.25rem;
+        font-weight: 500;
+      }
+  
+      input {
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        background-color: #F1F7FA;
+      }
+  
+      .forgot-link {
+        align-self: flex-end;
+        font-size: 0.85rem;
+        color: #555;
+        margin-bottom: 1rem;
+      }
+  
+      .btn-signin {
+        background-color: black;
+        width: 200px;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 0.75rem;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-bottom: 1rem;
+      }
+  
+      .or-separator {
+        text-align: center;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        color: #999;
+      }
+  
+      .btn-google {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        background-color: #fff;
+        color: #000;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 0.75rem;
+        font-size: 1rem;
+        cursor: pointer;
+        margin-bottom: 1rem;
+  
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  
+    .signup {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 0.5rem;
+  
+      a {
+        color: #535af1;
+        text-decoration: none;
+        margin-left: 0.25rem;
+      }
+    }
+  }
+  

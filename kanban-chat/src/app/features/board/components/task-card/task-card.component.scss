@@ -1,0 +1,96 @@
+.task-card {
+    width: 100%;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: box-shadow 0.2s;
+  
+    // Hover-Effekt
+    &:hover {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+  
+    // HEADER (Labels)
+    .task-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      .labels {
+        display: flex;
+        gap: 0.25rem;
+  
+        .label {
+          background: #f3f3f3;
+          color: #666;
+          font-size: 12px;
+          padding: 0.25rem 0.5rem;
+          border-radius: 4px;
+        }
+      }
+    }
+  
+    // BODY (Titel und Beschreibung)
+    .task-card-body {
+      .title {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0 0 0.25rem 0;
+        color: #333;
+      }
+      .description {
+        font-size: 14px;
+        color: #555;
+        margin: 0;
+        line-height: 1.4;
+      }
+    }
+  
+    // FOOTER (Metadaten + Assignees)
+    .task-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      .meta {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+  
+        .due-date,
+        .comments {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+  
+          .icon {
+            width: 16px;
+            height: 16px;
+          }
+          span {
+            font-size: 14px;
+            color: #777;
+          }
+        }
+      }
+  
+      .assignees {
+        display: flex;
+        gap: 0.25rem;
+  
+        .assignee {
+          .avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+  

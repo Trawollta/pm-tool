@@ -1,19 +1,82 @@
 .dashboard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+
+  .overview {
+    background-color: #fff;
     padding: 1rem;
-    .widgets {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1rem;
-      width: 100%;
+    border-radius: 8px;
+    max-width: 600px;  /* Breite des gesamten Blocks */
+    margin: 0 auto;    /* Zentriert den Block horizontal */
+
+    h3 {
+      font-family: 'Manrope', sans-serif;
+      font-weight: bold;
+      font-size: 32px;
     }
-    .widget {
-      background-color: #f9f9f9;
+
+    /* Task-Container mit Flexbox */
+    .task-grid {
+      display: flex;
+      flex-wrap: wrap;   /* Karten können in eine neue Zeile umbrechen */
+      gap: 24px;         /* Abstand zwischen den Karten */
+      justify-content: center; /* Zentriert die Karten, optional */
+    }
+
+    /* Einzelne Karten */
+    .task-card {
+      box-sizing: border-box;
+      flex: 1 1 calc(50% - 24px); 
+      /* 
+        Bedeutet:
+        - '1 1' = wachsen und schrumpfen möglich
+        - 'calc(50% - 24px)' = Basisbreite ist ~50% minus dem Gap
+      */
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
       padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      font-size: 1rem;
+      font-weight: bold;
+
+      img {
+        width: 32px; /* optional: Größe anpassen */
+        margin-bottom: 0.5rem;
+      }
+
+      .icon {
+        font-size: 24px;
+        margin-bottom: 5px;
+      }
+
+      .task-title {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 0.5rem;
+      }
+
+      .task-count {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #000;
+      }
+    }
+
+    /* Farben für unterschiedliche Tasks */
+    .priority {
+      background-color: #E8F4D8;
+    }
+    .upcoming {
+      background-color: #e2f2ff;
+    }
+    .overdue {
+      background-color: #ece2ff;
+    }
+    .pending {
+      background-color: #ffe2e2;
     }
   }
-  
+}

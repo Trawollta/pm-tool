@@ -1,0 +1,10 @@
+<div class="textarea-chat-thread">
+  <form [formGroup]="chatForm" (ngSubmit)="onSendMessage()">
+    <div class="input-container">
+      <textarea formControlName="content" placeholder="Type a message..."></textarea>
+      <button type="submit" class="send-btn">
+        <img src="assets/icons/sendButton.svg" alt="Send" />
+      </button>
+    </div>
+  </form>
+</div>

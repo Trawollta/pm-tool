@@ -1,14 +1,32 @@
 <div class="dashboard">
-    <div class="widgets">
-      <div class="widget calendar">
-       <app-calender-widget></app-calender-widget>
+  <div class="overview">
+    <h3>My Task</h3>
+
+    <div class="task-grid">
+      <div class="task-card priority">
+        <img src="./assets/icons/green.svg" />
+        <div class="icon"><i class="fas fa-bolt"></i></div>
+        <span class="task-title">Priority Task</span>
+        <span class="task-count">23/34 Task</span>
       </div>
-      <div class="widget tasks-overview">
-        <app-task-overview></app-task-overview>
+
+      <div class="task-card upcoming">
+        <div class="icon"><i class="fas fa-calendar-alt"></i></div>
+        <span class="task-title">Upcoming Task</span>
+        <span class="task-count">3/34 Task</span>
       </div>
-      <div class="widget info">
-        <app-info-widget></app-info-widget>
+
+      <div class="task-card overdue">
+        <div class="icon"><i class="fas fa-exclamation-circle"></i></div>
+        <span class="task-title">Overdue Task</span>
+        <span class="task-count">10/34 Task</span>
+      </div>
+
+      <div class="task-card pending">
+        <div class="icon"><i class="fas fa-clock"></i></div>
+        <span class="task-title">Pending Task</span>
+        <span class="task-count">2/34 Task</span>
       </div>
     </div>
   </div>
-  
+</div>

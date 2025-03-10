@@ -1,0 +1,45 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 17px;
+  
+    /* Hintergrund, Rundung, etc. */
+    background-color: #fff;       /* Weißer Hintergrund */
+    border-radius: 8px;          /* Abgerundete Ecken */
+    padding: 0.5rem 1rem;        /* Innenabstände */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Leichter Schatten */
+  
+    .boardname {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Manrope', sans-serif;
+      font-weight: bold; 
+      font-size: 42px;// wenn du den 700-Schnitt willst   /* Abstand zwischen Icon, Text und Pfeil */
+  
+      img {
+        width: 32px;            /* Icon-Größe anpassen */
+        height: 32px;
+      }
+  
+      span {
+        font-size: 19px;
+        font-weight: bold;
+      }
+  
+      .down-arrow {
+        width: 16px;            /* Größe des Pfeil-Icons */
+        height: 16px;
+      }
+    }
+  
+    .burger-menu {
+      img {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;        /* Hand-Cursor bei Hover */
+      }
+    }
+  }
+  

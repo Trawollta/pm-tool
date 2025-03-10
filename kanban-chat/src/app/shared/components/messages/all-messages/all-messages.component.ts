@@ -1,11 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef, Input, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+import { Message } from '../../../models/message.model';
+import { CurrentUserMessageComponent } from '../current-user-message/current-user-message.component';
+import { OtherUserMessageComponent } from '../other-user-message/other-user-message.component';
 
 @Component({
   selector: 'app-all-messages',
-  imports: [],
+  standalone: true,
   templateUrl: './all-messages.component.html',
-  styleUrl: './all-messages.component.scss'
+  styleUrls: ['./all-messages.component.scss'],
+  imports: [
+    CommonModule,
+    CurrentUserMessageComponent,
+    OtherUserMessageComponent
+  ]
 })
-export class AllMessagesComponent {
+export class AllMessagesComponent  {
+  @Input() messages: Message[] = [];
+  @Input() currentUserId!: number;
+
+
+  trackByMsg(index: number, msg: Message): number {
+    return msg.id; 
+    // oder ein anderer eindeutiger Wert, z. B. msg.timestamp
+  }
 
 }

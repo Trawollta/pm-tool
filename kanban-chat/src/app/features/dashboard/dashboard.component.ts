@@ -9,9 +9,9 @@ import { TasksOverviewComponent } from './components/task-overview/task-overview
   standalone: true,
   imports: [
     CommonModule,
-    CalendarWidgetComponent,
-    TasksOverviewComponent,
-    InfoWidgetComponent
+    // CalendarWidgetComponent,
+    // TasksOverviewComponent,
+    // InfoWidgetComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']

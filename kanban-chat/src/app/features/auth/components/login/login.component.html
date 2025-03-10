@@ -1,1 +1,21 @@
-<p>login works!</p>
+<div class="login-container">
+  <div class="login-card">
+    <div class="stars">
+      <img class="picture" src="assets/icons/login-pic.png" alt="Login Illustration" />
+    </div>
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <label for="email">Email</label>
+      <input id="email" type="email" placeholder="Email" formControlName="email" />
+      <label for="password">Password</label>
+      <input id="password" type="password" placeholder="Password" formControlName="password" />
+  
+      <a href="#" class="forgot-link" (click)="$event.preventDefault()">Forgot password?</a>
+  
+      <button type="submit" class="btn-signin">Sign in</button>
+    </form>
+  
+    <p class="signup">
+      Don't have an account? <a href="#">Create account</a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,191 @@
+/* 
+ * Mobile-First-Styles: 
+ * Auf kleinen Bildschirmen werden Spalten als horizontal scrollbare Liste angezeigt. 
+ * Auf größeren Screens können sie nebeneinander gerendert werden (siehe Media Queries).
+ */
+
+/* --- Header-Bereich --- */
+.board-header {
+  padding: 1rem;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+
+  h1 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .board-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .team-info {
+      h2 {
+        margin: 0;
+        font-size: 1rem;
+      }
+      p {
+        margin: 0;
+        font-size: 0.875rem;
+        color: #666;
+      }
+    }
+
+    .privacy-status {
+      .privacy-tag {
+        background-color: #f3f3f3;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        width: fit-content;
+      }
+    }
+
+    .avatar-group {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: -8px;
+        border: 2px solid #fff;
+      }
+    }
+
+    .add-member-btn {
+      align-self: flex-start;
+      background-color: #007bff;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+/* --- Dropdown und Filter-Bereich --- */
+.board-controls {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+
+  .dropdown {
+    position: relative;
+
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      .arrow {
+        margin-left: 0.5rem;
+        transition: transform 0.2s ease;
+      }
+      &.open {
+        transform: rotate(180deg);
+      }
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 2rem;
+      left: 0;
+      background-color: #fff;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 999;
+
+      button {
+        background: none;
+        border: none;
+        text-align: left;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        font-size: 0.875rem;
+
+        &:hover {
+          background-color: #f7f7f7;
+        }
+      }
+    }
+  }
+
+  .filter-button {
+    margin-left: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+}
+
+/* --- Kanban-Board-Bereich --- */
+.kanban-board {
+  display: flex;
+  flex-wrap: nowrap;    /* Keine Zeilenumbrüche, sondern horizontales Scrollen */
+  overflow-x: auto;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: #f8f9fa;
+}
+
+.kanban-column {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  min-width: 280px;
+  padding: 1rem;
+  flex-shrink: 0;       /* Verhindert das Zusammenquetschen der Spalte */
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+
+  .add-new-card {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #f1f1f1;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 4px;
+  }
+}
+
+@media (min-width: 768px) {
+  /* Ab Tablet-Größe: Spalten können nebeneinander statt horizontal scrollen */
+  .kanban-board {
+    overflow-x: hidden;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .kanban-column {
+    min-width: calc(50% - 1rem);
+    margin-bottom: 1rem;
+    flex-shrink: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Ab Desktop-Größe: vier Spalten nebeneinander */
+  .kanban-column {
+    min-width: calc(25% - 1rem);
+  }
+}

@@ -1,0 +1,70 @@
+.all-messages {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Abstand zwischen Nachrichten */
+  
+    .message-bubble {
+      max-width: 70%;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      display: inline-block;
+      position: relative;
+  
+      .message-text {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.4;
+      }
+  
+      .message-time {
+        display: block;
+        margin-top: 0.25rem;
+        font-size: 0.75rem;
+        color: #999;
+        text-align: right;
+      }
+  
+      .message-name {
+        display: block;
+        margin-top: 0.1rem;
+        font-size: 0.75rem;
+        color: #666;
+        text-align: right;
+      }
+  
+      /* Pfeil-Spitze optional */
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0.6rem;
+        width: 0;
+        height: 0;
+        border-style: solid;
+      }
+    }
+  
+    .current-user {
+      align-self: flex-end; /* Nachricht rechts ausrichten */
+      background-color: #eaeaea;
+      color: #333;
+  
+      &::after {
+        right: -10px;
+        border-width: 6px 0 6px 6px;
+        border-color: transparent transparent transparent #eaeaea;
+      }
+    }
+  
+    .other-user {
+      align-self: flex-start; /* Nachricht links ausrichten */
+      background-color: #444df2;
+      color: #fff;
+  
+      &::after {
+        left: -10px;
+        border-width: 6px 6px 6px 0;
+        border-color: transparent #444df2 transparent transparent;
+      }
+    }
+  }
+  

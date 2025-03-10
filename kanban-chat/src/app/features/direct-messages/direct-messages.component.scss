@@ -1,0 +1,15 @@
+.newChat {
+    display: flex;
+    justify-content: center;
+    align-items: center;  // Damit das Icon und der Text vertikal zentriert sind
+    border-color: black;
+    width: 350px;
+    border-radius: 4px;
+    height: 44px;
+    gap: 8px;
+  }
+
+.name {
+    font-size: 14px;
+    font-weight: bold;
+}

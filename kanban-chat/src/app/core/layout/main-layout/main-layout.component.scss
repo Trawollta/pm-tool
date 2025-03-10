@@ -1,0 +1,28 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Füllt den gesamten Viewport */
+  }
+  
+  /* Header und Footer sind eigene Komponenten, aber hier kannst du ggf. globale Styles anpassen */
+  /* Zum Beispiel: */
+  app-header, 
+  app-footer {
+    flex: 0 0 auto;
+  }
+  
+  /* Haupt-Content-Bereich */
+  .main-layout-content {
+    flex: 1 1 auto;       /* Nimmt den restlichen Platz ein */
+    // padding: 1rem;        /* Innenabstand */
+    overflow-y: auto;     /* Ermöglicht Scrollen bei Überschreitung der Höhe */
+    background-color: #f9f9f9; /* Optionale Hintergrundfarbe */
+  }
+  
+  /* Optional: Zusätzliche Media Queries für responsives Verhalten */
+  @media (min-width: 768px) {
+    .main-layout-content {
+      padding: 2rem;
+    }
+  }
+  

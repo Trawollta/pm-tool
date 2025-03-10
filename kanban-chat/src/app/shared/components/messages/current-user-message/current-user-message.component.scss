@@ -1,0 +1,44 @@
+.current-user-bubble {
+  align-self: flex-end; /* Rechtsbündig, wenn Eltern-Container Flex verwendet */
+  background-color: #eaeaea; /* Heller Hintergrund */
+  color: #333; /* Dunkler Text */
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  max-width: 70%;
+  margin: 0.5rem 0;
+  position: relative;
+  display: inline-block;
+
+  .message-text {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .message-time {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: #999;
+    text-align: right;
+  }
+
+  .message-name {
+    display: block;
+    margin-top: 0.1rem;
+    font-size: 0.75rem;
+    color: #666;
+    text-align: right;
+  }
+
+  /* Pfeil-Spitze (optionale Darstellung) */
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0.6rem;
+    right: -6px;
+    border-width: 6px 0 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent transparent #eaeaea;
+  }
+}
