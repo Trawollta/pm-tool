@@ -1,35 +1,37 @@
-<!-- task-card.component.html -->
 <div class="task-card">
   <!-- Datum-Badge (optional) -->
   <div class="card-badge" *ngIf="task.dueDate">
+    <img src="assets/icons/time.svg" alt="time icon" />
     <span class="badge-date">{{ task.dueDate }}</span>
   </div>
-
-  <!-- Beispielbild -->
-  <img
-    class="card-image"
-    src="https://via.placeholder.com/300x150?text=Preview"
-    alt="Preview"
-  />
 
   <!-- Titel und Beschreibung -->
   <h4 class="card-title">{{ task.title }}</h4>
   <p class="card-description" *ngIf="task.description">{{ task.description }}</p>
 
-  <!-- Status + Prozentanzeige (hier nur Beispielhaft) -->
-  <div class="card-status-row" *ngIf="task.labels?.length">
-    <span class="card-status" *ngFor="let label of task.labels">{{ label }}</span>
-    <span class="card-percent">75%</span>
+  <!-- Status + Prozentanzeige -->
+  <div class="card-status-row">
+    <!-- Beispiel: Zeige alle Labels an -->
+    <span class="card-status" *ngFor="let label of task.labels">
+      {{ label }}
+    </span>
+    <!-- Fortschritts-Prozent, wenn vorhanden -->
+    <span class="card-percent" *ngIf="task.progress !== undefined">
+      {{ task.progress }}%
+    </span>
   </div>
-  <div class="card-progress-bar">
-    <div class="card-progress" style="width: 75%"></div>
+
+  <!-- Fortschrittsbalken (nur anzeigen, wenn task.progress existiert) -->
+  <div class="card-progress-bar" *ngIf="task.progress !== undefined">
+    <!-- Die Breite richtet sich nach dem Wert von task.progress -->
+    <div class="card-progress" [style.width.%]="task.progress"></div>
   </div>
 
   <!-- Footer mit Comments, Assignees -->
   <div class="card-footer">
     <div class="meta">
       <div class="comments" *ngIf="task.comments !== undefined">
-        <img class="icon" src="assets/img/icons/comments.svg" alt="Comments" />
+        <!-- <img class="icon" src="assets/img/icons/comments.svg" alt="Comments" /> -->
         <span>{{ task.comments }} Comments</span>
       </div>
     </div>

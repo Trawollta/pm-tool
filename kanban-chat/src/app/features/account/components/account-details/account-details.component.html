@@ -1,0 +1,83 @@
+<div class="account-settings">
+    <h2>Account Settings</h2>
+    <form (ngSubmit)="onSubmit()">
+      <!-- First name -->
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input
+          id="firstName"
+          type="text"
+          [(ngModel)]="firstName"
+          name="firstName"
+          placeholder="Laura"
+        />
+      </div>
+  
+      <!-- Last name -->
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          id="lastName"
+          type="text"
+          [(ngModel)]="lastName"
+          name="lastName"
+          placeholder="Cintiya"
+        />
+      </div>
+  
+      <!-- Employee ID -->
+      <div class="form-group">
+        <label for="employeeId">Employee ID</label>
+        <input
+          id="employeeId"
+          type="text"
+          [(ngModel)]="employeeId"
+          name="employeeId"
+          placeholder="09-6364"
+        />
+      </div>
+  
+      <!-- Position (Select) -->
+      <div class="form-group">
+        <label for="position">Position</label>
+        <select
+          id="position"
+          [(ngModel)]="position"
+          name="position"
+        >
+          <option value="Designer">Designer</option>
+          <option value="Developer">Developer</option>
+          <option value="Manager">Manager</option>
+          <!-- weitere Positionen -->
+        </select>
+      </div>
+  
+      <!-- E-mail -->
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input
+          id="email"
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="lauracintiya@site.com"
+        />
+      </div>
+  
+      <!-- Phone Number -->
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input
+          id="phoneNumber"
+          type="tel"
+          [(ngModel)]="phoneNumber"
+          name="phoneNumber"
+          placeholder="+6208737445"
+        />
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit">Save Changes</button>
+    </form>
+  </div>
+  

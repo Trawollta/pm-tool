@@ -1,16 +1,26 @@
 import { createReducer, on } from '@ngrx/store';
 import { User } from '../models/user.model';
-import { clearUser, deleteUser, loginFailure, loginSuccess, logoutUser, setUser, updateUser } from './auth.actions';
-
+import {
+  clearUser,
+  deleteUser,
+  loginFailure,
+  loginSuccess,
+  logoutUser,
+  setUser,
+  updateUser,
+  loadUsersSuccess
+} from './auth.actions';
 
 export interface AuthState {
   user: User | null;
+  users: User[]; // 🔹 Liste aller Nutzer hinzugefügt
   token?: string | null;
   error?: string | null;
 }
 
 export const initialAuthState: AuthState = {
   user: null,
+  users: [], // 🔹 Initialisiere die Nutzerliste als leeres Array
   token: null,
   error: null,
 };
@@ -55,6 +65,11 @@ export const authReducer = createReducer(
     ...state,
     user: null,
     token: null,
+    error: null
+  })),
+  on(loadUsersSuccess, (state, { users }) => ({
+    ...state,
+    users: users, // 🔹 Nutzerliste im State aktualisieren
     error: null
   }))
 );

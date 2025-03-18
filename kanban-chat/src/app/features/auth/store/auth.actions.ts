@@ -2,6 +2,23 @@ import { createAction, props } from '@ngrx/store';
 import { User } from '../models/user.model';
 // import { User } from 'app/models/user.class';
 
+
+
+export const signUpUser = createAction(
+  '[Auth] Sign Up User',
+  props<{ name: string; email: string; password: string }>()
+);
+
+export const signUpSuccess = createAction(
+  '[Auth] Sign Up Success',
+  props<{ user: User; token?: string }>()
+);
+
+export const signUpFailure = createAction(
+  '[Auth] Sign Up Failure',
+  props<{ error: string }>()
+);
+
 /** 🔹 Login-Versuch starten */
 export const loginUser = createAction(
   '[Auth] Login User',
@@ -45,4 +62,15 @@ export const deleteUser = createAction(
   );
 
 
+  export const loadUsers = createAction('[Auth] Load Users');
+
+  export const loadUsersSuccess = createAction(
+    '[Auth] Load Users Success',
+    props<{ users: User[] }>()
+  );
+  
+  export const loadUsersFailure = createAction(
+    '[Auth] Load Users Failure',
+    props<{ error: string }>()
+  );
 

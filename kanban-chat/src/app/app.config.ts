@@ -1,8 +1,9 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideClientHydration } from '@angular/platform-browser';
+import { provideHttpClient } from '@angular/common/http'; // ⬅️ HttpClientProvider hinzugefügt
 import { routes } from './app.routes';
-// Beispiel: Importiere NgRx Provider
+// NgRx Store & Effects
 import { provideStore } from '@ngrx/store';
 import { authReducer } from './features/auth/store/auth.reducer';
 import { AuthEffects } from './features/auth/store/auth.effects';
@@ -16,6 +17,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(),
+    provideHttpClient(),
     provideStore({ 
       auth: authReducer,
       channels: channelsReducer,
@@ -24,6 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideEffects([
       AuthEffects,
       ChannelsEffects,
-      MessagesEffects]),
+      MessagesEffects
+    ]),
   ]
 };

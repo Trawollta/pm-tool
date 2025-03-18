@@ -5,8 +5,10 @@ import { BoardPageComponent } from './features/board/components/board-page/board
 import { ChannelChatComponent } from './features/channels/components/channel-chat/channel-chat.component';
 import { AuthLayoutComponent } from './core/layout/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
-import { DirectMessagesComponent } from './features/direct-messages/direct-messages.component';
 import { ChannelListComponent } from './features/channels/components/channel-list/channel-list.component';
+import { DirectMessageListComponent } from './features/direct-messages/components/direct-message-list/direct-message-list.component';
+import { AccountDetailsComponent } from './features/account/components/account-details/account-details.component';
+import { SignUpComponent } from './features/auth/components/sign-up/sign-up.component';
 
 export const routes: Routes = [
   // Auth-Bereich: Login und eventuell weitere Auth-Seiten
@@ -16,7 +18,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
-      // z.B. { path: 'register', component: RegisterComponent },
+      { path: 'register', component: SignUpComponent },
       // { path: 'forgot-password', component: ForgotPasswordComponent },
     ]
   },
@@ -27,9 +29,10 @@ export const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'board', component: BoardPageComponent },
-      { path: 'direct-messages', component: DirectMessagesComponent},
-      { path: 'channel-list', component: ChannelListComponent},
+      { path: 'direct-messages', component: DirectMessageListComponent },
+      { path: 'channel-list', component: ChannelListComponent },
       { path: 'channel/:id', component: ChannelChatComponent },
+      { path: 'account', component: AccountDetailsComponent },
       // Weitere geschützte Routen
     ]
   }

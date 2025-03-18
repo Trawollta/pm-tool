@@ -1,11 +1,42 @@
 <div class="calendar-widget">
-    <div class="calendar-header">
-      <h3>{{ currentYear }} - {{ currentMonth + 1 }}</h3>
-    </div>
-    <div class="calendar-grid">
-      <div class="calendar-cell" *ngFor="let day of days">
-        {{ day }}
-      </div>
+  <!-- Navigation: Monat, Jahr, Pfeil-Buttons -->
+  <div class="calendar-nav">
+    <button (click)="prevMonth()" class="nav-button">&#10094;</button>
+    
+    <!-- Monat-Auswahl -->
+    <select [(ngModel)]="currentMonth" (change)="updateCalendar()">
+      <option *ngFor="let m of months; let i = index" [value]="i">
+        {{ m }}
+      </option>
+    </select>
+
+    <!-- Jahr-Auswahl -->
+    <select [(ngModel)]="currentYear" (change)="updateCalendar()">
+      <option *ngFor="let y of yearRange" [value]="y">
+        {{ y }}
+      </option>
+    </select>
+    
+    <button (click)="nextMonth()" class="nav-button">&#10095;</button>
+  </div>
+
+  <!-- Kopfzeile für Wochentage (SU, MO, TU, ...) -->
+  <div class="calendar-grid day-labels">
+    <div class="day-label" *ngFor="let d of dayLabels">
+      {{ d }}
     </div>
   </div>
-  
+
+  <!-- Raster mit den Tagen des Monats -->
+  <div class="calendar-grid">
+    <div
+      class="calendar-cell"
+      *ngFor="let day of days"
+      [class.empty-cell]="day.date === 0"
+      [class.current-day]="isToday(day)"
+    >
+      <!-- Wenn day.date=0, ist das ein Platzhalter für Tage aus dem Vormonat -->
+      <span *ngIf="day.date !== 0">{{ day.date }}</span>
+    </div>
+  </div>
+</div>

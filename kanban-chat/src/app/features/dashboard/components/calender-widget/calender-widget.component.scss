@@ -1,22 +1,75 @@
 .calendar-widget {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 0.5rem;
-    background-color: #fff;
-    .calendar-header {
-      text-align: center;
-      margin-bottom: 0.5rem;
+  width: 300px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+
+  .calendar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    .nav-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.25rem;
+      padding: 0.25rem;
+
+      &:hover {
+        background-color: #f3f3f3;
+        border-radius: 4px;
+      }
     }
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 0.25rem;
-    }
-    .calendar-cell {
-      padding: 0.5rem;
-      text-align: center;
-      border: 1px solid #eee;
+
+    select {
+      border: none;
+      background-color: #f7f7f7;
       border-radius: 4px;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.875rem;
     }
   }
-  
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+    text-align: center;
+  }
+
+  .day-labels {
+    margin-bottom: 0.5rem;
+
+    .day-label {
+      font-weight: 500;
+      color: #999;
+    }
+  }
+
+  .calendar-cell {
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: #333;
+    transition: background-color 0.2s ease;
+    
+    &.empty-cell {
+      cursor: default;
+      opacity: 0.3; /* Tage, die nicht im aktuellen Monat liegen, "ausgrauen" */
+    }
+
+    &:hover:not(.empty-cell) {
+      background-color: #f3f3f3;
+    }
+
+    &.current-day {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+}

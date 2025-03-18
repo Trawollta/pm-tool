@@ -1,15 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TaskData } from '../../models/task';
 
-export interface TaskData {
-  id: number;
-  title: string;
-  description?: string;
-  dueDate?: string;
-  comments?: number;     
-  assignees?: string[];
-  labels?: string[];
-}
 
 @Component({
   selector: 'app-task-card',

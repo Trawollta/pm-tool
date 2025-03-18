@@ -9,7 +9,7 @@ import { TasksOverviewComponent } from './components/task-overview/task-overview
   standalone: true,
   imports: [
     CommonModule,
-    // CalendarWidgetComponent,
+    CalendarWidgetComponent,
     // TasksOverviewComponent,
     // InfoWidgetComponent
   ],

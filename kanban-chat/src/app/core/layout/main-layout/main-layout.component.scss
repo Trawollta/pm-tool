@@ -1,28 +1,61 @@
 :host {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Füllt den gesamten Viewport */
+  /* Grid-Layout für das gesamte Hauptlayout */
+  display: grid;
+
+  /* Mobile-First: Header (Zeile 1), Content (Zeile 2), Footer (Zeile 3) */
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
+
+  /* Falls du die gesamte Höhe ausfüllen möchtest */
+  height: 100vh;
+}
+
+/* HEADER oben */
+app-header {
+  grid-row: 1;   /* Zeile 1 */
+  grid-column: 1;
+}
+
+/* CONTENT in der Mitte */
+.main-layout-content {
+  grid-row: 2;   /* Zeile 2 */
+  grid-column: 1;
+  overflow-y: auto; /* vertikales Scrollen erlauben */
+  background-color: #f9f9f9;
+  padding: 1rem;    /* optionaler Rand */
+}
+
+/* FOOTER unten */
+app-footer {
+  grid-row: 3;   /* Zeile 3 */
+  grid-column: 1;
+  background-color: #f1f1f1; /* Beispiel-Hintergrund */
+}
+
+/* Ab 800px: Footer nach links, Header bleibt oben */
+@media (min-width: 700px) {
+  :host {
+    /* Jetzt: Header (Zeile 1, über gesamte Breite), 
+       Footer (Zeile 2, Spalte 1), Content (Zeile 2, Spalte 2) */
+    grid-template-rows: auto 1fr;       /* 2 Zeilen */
+    grid-template-columns: 200px 1fr;   /* Footer 200px breit, Content füllt Rest */
   }
-  
-  /* Header und Footer sind eigene Komponenten, aber hier kannst du ggf. globale Styles anpassen */
-  /* Zum Beispiel: */
-  app-header, 
+
+  /* HEADER soll oben über beide Spalten gehen */
+  app-header {
+    grid-row: 1;
+    grid-column: 1 / span 2; /* Spalte 1 bis 2 */
+  }
+
+  /* FOOTER nun links */
   app-footer {
-    flex: 0 0 auto;
+    grid-row: 2;  /* Zeile 2 */
+    grid-column: 1; /* Spalte 1 */
   }
-  
-  /* Haupt-Content-Bereich */
+
+  /* CONTENT rechts */
   .main-layout-content {
-    flex: 1 1 auto;       /* Nimmt den restlichen Platz ein */
-    // padding: 1rem;        /* Innenabstand */
-    overflow-y: auto;     /* Ermöglicht Scrollen bei Überschreitung der Höhe */
-    background-color: #f9f9f9; /* Optionale Hintergrundfarbe */
+    grid-row: 2;  /* Zeile 2 */
+    grid-column: 2; /* Spalte 2 */
   }
-  
-  /* Optional: Zusätzliche Media Queries für responsives Verhalten */
-  @media (min-width: 768px) {
-    .main-layout-content {
-      padding: 2rem;
-    }
-  }
-  
+}

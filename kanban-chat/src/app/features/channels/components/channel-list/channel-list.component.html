@@ -1,4 +1,8 @@
 <div class="channel-list">
+  <button class="newChannel"(click)="openCreateChannel()">
+    <img src="assets/icons/newChat.svg">
+    <span class="name">New Channel</span>
+</button>
   <div *ngIf="loading$ | async" class="loading">
     Loading channels...
   </div>
@@ -14,3 +18,6 @@
     </li>
   </ul>
 </div>
+
+
+<app-create-channel *ngIf="isCreateChannelOpen" (channelCreated)="reloadChannels()"></app-create-channel>
