@@ -5,6 +5,7 @@ export class User {
     isActive: boolean;
     img: string;
     relatedChats: string[];
+    phoneNumber?: string;
     checked?: boolean;
     password?: string; // Optionales Passwort-Feld
   
@@ -15,6 +16,7 @@ export class User {
       this.isActive = obj?.isActive || false;
       this.img = obj?.img || 'assets/img/avatars/default.svg';
       this.relatedChats = obj?.relatedChats || [];
+      this.phoneNumber = obj?.phoneNumber || '';
       this.checked = obj?.checked || false;
       this.password = obj?.password || '';  // Standardmäßig leer, falls nicht gesetzt
     }
