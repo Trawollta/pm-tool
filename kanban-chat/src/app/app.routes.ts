@@ -9,6 +9,7 @@ import { ChannelListComponent } from './features/channels/components/channel-lis
 import { DirectMessageListComponent } from './features/direct-messages/components/direct-message-list/direct-message-list.component';
 import { AccountDetailsComponent } from './features/account/components/account-details/account-details.component';
 import { SignUpComponent } from './features/auth/components/sign-up/sign-up.component';
+import { CreateTaskDialogComponent } from './features/board/components/create-task-dialog/create-task-dialog.component';
 
 export const routes: Routes = [
   // Auth-Bereich: Login und eventuell weitere Auth-Seiten
@@ -33,7 +34,7 @@ export const routes: Routes = [
       { path: 'channel-list', component: ChannelListComponent },
       { path: 'channel/:id', component: ChannelChatComponent },
       { path: 'account', component: AccountDetailsComponent },
-      // Weitere geschützte Routen
+      { path: 'create', component: CreateTaskDialogComponent}
     ]
   }
 ];

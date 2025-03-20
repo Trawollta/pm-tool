@@ -16,13 +16,25 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    text-decoration: none; 
+    transition: background-color 0.3s ease;
+    color: inherit;
     @media screen and (min-width: 700px) {
   
       flex-direction: row;
       gap: 8px;
     }
   }
+
+  .menu-icon:hover {
+    text-decoration: none;
+  }
   
+  .menu-icon.active {
+    background-color: #e0e0e0; /* leichter grauer Hintergrund */
+  }
+  
+
   .menu-icon img {
     width: 24px; 
     height: 24px;

@@ -4,7 +4,8 @@ export interface TaskData {
     description?: string;
     dueDate?: string;
     comments?: number;
-    assignees?: string[];
+    assignees?: number[]; 
     labels?: string[];
     progress?: number;
+    creator?: number;
   }

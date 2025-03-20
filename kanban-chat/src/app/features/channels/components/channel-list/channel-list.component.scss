@@ -1,3 +1,21 @@
+.newChannel {
+  display: flex;
+  justify-content: center;
+  align-items: center;  // Damit das Icon und der Text vertikal zentriert sind
+  border-color: black;
+  width:90%;
+  // width: 350px;
+  border-radius: 4px;
+  height: 44px;
+  gap: 8px;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
 .channel-list {
     padding: 1rem;
     background-color: #fff;
