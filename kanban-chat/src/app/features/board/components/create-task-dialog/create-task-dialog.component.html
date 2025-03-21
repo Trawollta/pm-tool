@@ -32,14 +32,31 @@
       </div>
       
       <!-- Assignees (Dropdown with multiple selection) -->
-      <div class="form-group">
-        <label for="assignees">Assign Users:</label>
-        <select id="assignees" name="assignees" multiple [(ngModel)]="selectedAssignees">
-          <option *ngFor="let user of users$ | async" [value]="user.id">
-            {{ user.name }}
-          </option>
-        </select>
-      </div>
+     <!-- Assignees (Dropdown-Liste mit Checkboxen) -->
+<div class="form-group dropdown">
+  <label>Assign Users:</label>
+  
+  <div class="dropdown-toggle" (click)="toggleDropdown()">
+    Select Users
+    <span class="arrow">{{ dropdownOpen ? '▲' : '▼' }}</span>
+  </div>
+
+  <div class="dropdown-menu" *ngIf="dropdownOpen">
+    <div *ngFor="let user of users$ | async" class="dropdown-item">
+      <label>
+        <input
+          type="checkbox"
+          [value]="user.id"
+          (change)="toggleAssignee(user.id, $event)"
+          [checked]="selectedAssignees.includes(user.id)"
+        />
+        {{ user.name }}
+      </label>
+    </div>
+  </div>
+</div>
+
+      
       
       <!-- Progress -->
       <div class="form-group">

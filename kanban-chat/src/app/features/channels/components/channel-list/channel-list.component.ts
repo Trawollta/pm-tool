@@ -27,17 +27,13 @@ export class ChannelListComponent implements OnInit {
   constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit(): void {
-    // Selektoren abonnieren, um Channels, Lade-Status und Fehler abzurufen
     this.channels$ = this.store.select(selectAllChannels);
     this.loading$ = this.store.select(selectChannelsLoading);
     this.error$ = this.store.select(selectChannelsError);
 
-    // Aktion dispatchen, um Channels zu laden (Dummy-Daten werden im Effekt simuliert)
-    this.store.dispatch(loadChannels());
   }
 
   onChannelClick(channel: Channel): void {
-    // Navigiere zur dynamischen Route, z. B. /channel/1
     this.router.navigate(['/channel', channel.id]);
   }
 

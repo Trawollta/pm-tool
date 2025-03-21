@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TaskData } from '../../models/task';
 import { createTask } from '../../store/task.actions';
+import { loadUsers } from '../../../auth/store/auth.actions';
 
 @Component({
   selector: 'app-create-task-dialog',
@@ -26,14 +27,21 @@ export class CreateTaskDialogComponent implements OnInit {
   selectedAssignees: number[] = [];
   selectedLabels: string[] = [];
   taskProgress = 0;
+  dropdownOpen = false;
 
   users$: Observable<User[]>;
 
-  constructor(private taskService: TaskService, private store: Store) {
+  constructor(private store: Store) {
     this.users$ = this.store.select(selectAllUsers);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.users$.subscribe(users => {
+      if (!users || users.length === 0) {
+        this.store.dispatch(loadUsers());
+      }
+    });
+  }
 
   onSubmit() {
     if (!this.taskTitle) return;
@@ -67,5 +75,20 @@ export class CreateTaskDialogComponent implements OnInit {
     this.selectedAssignees = [];
     this.selectedLabels = [];
     this.taskProgress = 0;
+  }
+
+  toggleAssignee(userId: number, event: Event) {
+    const checked = (event.target as HTMLInputElement).checked;
+    if (checked) {
+      if (!this.selectedAssignees.includes(userId)) {
+        this.selectedAssignees.push(userId);
+      }
+    } else {
+      this.selectedAssignees = this.selectedAssignees.filter(id => id !== userId);
+    }
+  }
+
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
   }
 }

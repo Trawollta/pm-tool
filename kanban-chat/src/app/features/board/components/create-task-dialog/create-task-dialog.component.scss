@@ -68,4 +68,42 @@
     background-color: #6c757d;
     color: #fff;
   }
+
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-toggle {
+    border: 1px solid #ccc;
+    padding: 8px;
+    background: #fff;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+  }
+  
+  .dropdown-item {
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .dropdown-item:hover {
+    background: #f0f0f0;
+  }
+  
+  .arrow {
+    float: right;
+  }
+  
   
