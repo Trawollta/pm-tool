@@ -5,8 +5,8 @@ import { InfoWidgetComponent } from './components/info-widget/info-widget.compon
 import { TasksOverviewComponent } from './components/task-overview/task-overview.component';
 import { Store } from '@ngrx/store';
 import { loadUsers } from '../auth/store/auth.actions';
-import { loadTasks } from '../board/store/task.actions';
 import { loadChannels } from '../channels/store/channels.actions';
+import { loadTasks } from '../board/store/task-store/task.actions';
 
 @Component({
   selector: 'app-dashboard',

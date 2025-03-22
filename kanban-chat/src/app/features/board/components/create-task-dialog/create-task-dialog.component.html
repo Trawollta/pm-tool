@@ -2,24 +2,56 @@
   <div class="create-task-dialog">
     <h2>Create New Task</h2>
     <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+      <!-- Category Dropdown -->
+      <div class="form-group">
+        <label>Category:</label>
+        <div class="category-select">
+          <select [(ngModel)]="selectedCategory" name="category" required>
+            <option *ngFor="let category of categories$ | async" [value]="category.id">
+              {{ category.name }}
+            </option>
+          </select>
+          <button type="button" (click)="toggleAddCategory()">+ Add</button>
+        </div>
+
+        <!-- Add new Category -->
+        <div *ngIf="showAddCategory" class="add-category">
+          <input type="text" placeholder="New Category" [(ngModel)]="newCategoryName" name="newCategory" />
+          <button type="button" (click)="addCategory()">Save</button>
+        </div>
+      </div>
+
+      <!-- Display selected category with color -->
+      <div *ngIf="selectedCategory">
+        <small>Selected:
+          <ng-container *ngIf="(categories$ | async) as categories">
+            <ng-container *ngFor="let cat of categories">
+              <span *ngIf="cat.id === selectedCategory" [style.color]="cat.color">
+                {{ cat.name }}
+              </span>
+            </ng-container>
+          </ng-container>
+        </small>
+      </div>
+
       <!-- Task Title -->
       <div class="form-group">
         <label for="title">Task Title:</label>
         <input type="text" id="title" name="title" [(ngModel)]="taskTitle" required />
       </div>
-      
+
       <!-- Description -->
       <div class="form-group">
         <label for="description">Description:</label>
         <textarea id="description" name="description" [(ngModel)]="taskDescription"></textarea>
       </div>
-      
+
       <!-- Due Date -->
       <div class="form-group">
         <label for="dueDate">Due Date:</label>
         <input type="date" id="dueDate" name="dueDate" [(ngModel)]="taskDueDate" />
       </div>
-      
+
       <!-- Labels (Status) -->
       <div class="form-group">
         <label for="labels">Select Status:</label>
@@ -30,41 +62,37 @@
           <option value="Done">Done</option>
         </select>
       </div>
-      
-      <!-- Assignees (Dropdown with multiple selection) -->
-     <!-- Assignees (Dropdown-Liste mit Checkboxen) -->
-<div class="form-group dropdown">
-  <label>Assign Users:</label>
-  
-  <div class="dropdown-toggle" (click)="toggleDropdown()">
-    Select Users
-    <span class="arrow">{{ dropdownOpen ? '▲' : '▼' }}</span>
-  </div>
 
-  <div class="dropdown-menu" *ngIf="dropdownOpen">
-    <div *ngFor="let user of users$ | async" class="dropdown-item">
-      <label>
-        <input
-          type="checkbox"
-          [value]="user.id"
-          (change)="toggleAssignee(user.id, $event)"
-          [checked]="selectedAssignees.includes(user.id)"
-        />
-        {{ user.name }}
-      </label>
-    </div>
-  </div>
-</div>
+      <!-- Assignees -->
+      <div class="form-group dropdown">
+        <label>Assign Users:</label>
+        <div class="dropdown-toggle" (click)="toggleDropdown()">
+          Select Users
+          <span class="arrow">{{ dropdownOpen ? '▲' : '▼' }}</span>
+        </div>
 
-      
-      
+        <div class="dropdown-menu" *ngIf="dropdownOpen">
+          <div *ngFor="let user of users$ | async" class="dropdown-item">
+            <label>
+              <input
+                type="checkbox"
+                [value]="user.id"
+                (change)="toggleAssignee(user.id, $event)"
+                [checked]="selectedAssignees.includes(user.id)"
+              />
+              {{ user.name }}
+            </label>
+          </div>
+        </div>
+      </div>
+
       <!-- Progress -->
       <div class="form-group">
         <label for="progress">Progress (%):</label>
         <input type="number" id="progress" name="progress" [(ngModel)]="taskProgress" min="0" max="100" />
       </div>
-      
-      <!-- Dialog Actions -->
+
+      <!-- Actions -->
       <div class="dialog-actions">
         <button type="submit" [disabled]="!taskForm.form.valid">Create Task</button>
         <button type="button" (click)="onCancel()">Cancel</button>

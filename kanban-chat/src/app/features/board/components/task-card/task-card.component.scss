@@ -1,105 +1,126 @@
 .task-card {
-    background: #fff;
-    border: 3px solid #eaeaea;
-    border-radius: 6px;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    // gap: 0.75rem;
-    transition: box-shadow 0.2s;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  width: 220px;
 
-    width:200px;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  .category-badge {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 0.5rem;
+  }
   
-    // Hover-Effekt
-    &:hover {
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
+  .category-chip {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: 0.2s;
+  }
   
-    // HEADER (Labels)
-    .task-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  .category-chip:hover {
+    filter: brightness(1.1);
+  }
   
-      .labels {
-        display: flex;
-        gap: 0.25rem;
   
-        .label {
-          background: #f3f3f3;
-          color: #666;
-          font-size: 12px;
-          padding: 0.25rem 0.5rem;
-          border-radius: 4px;
-        }
-      }
-    }
-  
-    // BODY (Titel und Beschreibung)
-    .task-card-body {
-      .title {
-        font-size: 16px;
-        font-weight: 600;
-        // margin: 0 0 0.25rem 0;
-        color: #333;
-      }
-      .description {
-        font-size: 14px;
-        color: grey;
-        margin: 0;
-        line-height: 1.4;
-      }
-    }
-  
-    // FOOTER (Metadaten + Assignees)
-    .task-card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-  
-      .meta {
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-  
-        .due-date,
-        .comments {
-          display: flex;
-          align-items: center;
-          gap: 0.25rem;
-  
-          .icon {
-            width: 16px;
-            height: 16px;
-          }
-          span {
-            font-size: 14px;
-            color: #777;
-          }
-        }
-      }
-  
-      .assignees {
-        display: flex;
-        gap: 0.25rem;
-  
-        .assignee {
-          .avatar {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            object-fit: cover;
-          }
-        }
-      }
+
+  .card-badge {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #fc6363;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    width: fit-content;
+    font-size: 12px;
+
+    img {
+      width: 14px;
+      height: 14px;
     }
   }
 
-.card-badge {
-  display:flex;
-  justify-content: center;
-  gap: 8px;
-  background-color: #FC6363;
-  border-radius: 5px;
+  .card-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+  }
+
+  .card-description {
+    font-size: 13px;
+    color: #555;
+  }
+
+  .card-status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .card-status {
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #444;
+    }
+
+    .card-percent {
+      font-size: 12px;
+      color: #777;
+    }
+  }
+
+  .card-progress-bar {
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    height: 6px;
+
+    .card-progress {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      height: 100%;
+      transition: width 0.4s ease;
+    }
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .meta {
+      font-size: 12px;
+      color: #777;
+    }
+
+    .avatar-group {
+      display: flex;
+
+      .avatar {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        margin-left: -8px;
+        border: 2px solid #fff;
+        object-fit: cover;
+      }
+    }
+  }
 }

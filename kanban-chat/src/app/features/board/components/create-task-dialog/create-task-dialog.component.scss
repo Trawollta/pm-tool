@@ -1,109 +1,188 @@
 .create-task-dialog-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
-  
-  .create-task-dialog {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 500px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  }
-  
-  .create-task-dialog h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group label {
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .dialog-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-  }
-  
-  .dialog-actions button {
-    padding: 10px 20px;
-    font-size: 14px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .dialog-actions button[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  .dialog-actions button[type="button"] {
-    background-color: #6c757d;
-    color: #fff;
-  }
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
 
-  .dropdown {
-    position: relative;
-  }
-  
-  .dropdown-toggle {
-    border: 1px solid #ccc;
-    padding: 8px;
-    background: #fff;
-    cursor: pointer;
-    user-select: none;
-  }
-  
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #fff;
-    border: 1px solid #ccc;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 10;
-  }
-  
-  .dropdown-item {
-    padding: 8px;
-    cursor: pointer;
-  }
-  
-  .dropdown-item:hover {
-    background: #f0f0f0;
-  }
-  
-  .arrow {
-    float: right;
-  }
-  
-  
+.create-task-dialog {
+  background: #fff;
+  padding: 24px;
+  border-radius: 10px;
+  width: 95%;
+  max-width: 520px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.create-task-dialog h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: 0.2s border ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.dialog-actions button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dialog-actions button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.dialog-actions button[type="submit"]:hover {
+  background-color: #0062cc;
+}
+
+.dialog-actions button[type="button"] {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.dialog-actions button[type="button"]:hover {
+  background-color: #5a6268;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  border: 1px solid #ccc;
+  padding: 8px;
+  background: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.dropdown-item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: #f0f0f0;
+}
+
+.arrow {
+  float: right;
+}
+
+/* Kategorie-Add Input */
+.category-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.category-select select {
+  flex: 1;
+}
+
+.category-select button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #28a745;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.category-select button:hover {
+  background-color: #218838;
+}
+
+/* Add-Category Input Styling */
+.add-category {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+.add-category input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.add-category button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.add-category button:hover {
+  background-color: #0062cc;
+}
+
+/* Optional: schönerer Hinweis auf die ausgewählte Kategorie */
+small span {
+  font-weight: bold;
+  padding-left: 4px;
+}
+

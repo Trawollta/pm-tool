@@ -1,8 +1,19 @@
+<pre>{{ task | json }}</pre>
 <div class="task-card">
-  <!-- Datum-Badge (optional) -->
-  <div class="card-badge" *ngIf="task.dueDate">
+
+  <!-- Kategorie-Badge -->
+  <!-- Kategorie anzeigen -->
+<div *ngIf="task.category" class="category-badge">
+  <span class="category-chip" [style.backgroundColor]="task.category.color">
+    {{ task.category.name }}
+  </span>
+</div>
+
+
+  <!-- Datum-Badge -->
+  <div class="card-badge" *ngIf="task.due_date">
     <img src="assets/icons/time.svg" alt="time icon" />
-    <span class="badge-date">{{ task.dueDate }}</span>
+    <span class="badge-date">{{ task.due_date | date:'mediumDate' }}</span>
   </div>
 
   <!-- Titel und Beschreibung -->
@@ -11,27 +22,23 @@
 
   <!-- Status + Prozentanzeige -->
   <div class="card-status-row">
-    <!-- Beispiel: Zeige alle Labels an -->
     <span class="card-status" *ngFor="let label of task.labels">
       {{ label }}
     </span>
-    <!-- Fortschritts-Prozent, wenn vorhanden -->
     <span class="card-percent" *ngIf="task.progress !== undefined">
       {{ task.progress }}%
     </span>
   </div>
 
-  <!-- Fortschrittsbalken (nur anzeigen, wenn task.progress existiert) -->
+  <!-- Fortschrittsbalken -->
   <div class="card-progress-bar" *ngIf="task.progress !== undefined">
-    <!-- Die Breite richtet sich nach dem Wert von task.progress -->
     <div class="card-progress" [style.width.%]="task.progress"></div>
   </div>
 
-  <!-- Footer mit Comments, Assignees -->
+  <!-- Footer -->
   <div class="card-footer">
     <div class="meta">
       <div class="comments" *ngIf="task.comments !== undefined">
-        <!-- <img class="icon" src="assets/img/icons/comments.svg" alt="Comments" /> -->
         <span>{{ task.comments }} Comments</span>
       </div>
     </div>

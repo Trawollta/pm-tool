@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { TaskData } from '../models/task';
 import * as TaskActions from './task.actions';
+import { TaskData } from '../../models/task';
 
 export interface TaskState {
   tasks: TaskData[];
@@ -16,6 +16,8 @@ export const initialTaskState: TaskState = {
 
 export const taskReducer = createReducer(
   initialTaskState,
+
+  // LOAD TASKS
   on(TaskActions.loadTasks, (state) => ({
     ...state,
     loading: true,
@@ -31,6 +33,8 @@ export const taskReducer = createReducer(
     loading: false,
     error,
   })),
+
+  // CREATE TASK
   on(TaskActions.createTask, (state) => ({
     ...state,
     loading: true,
@@ -45,5 +49,11 @@ export const taskReducer = createReducer(
     ...state,
     loading: false,
     error,
-  }))
+  })),
+
+  // OPTIONAL: DELETE TASK (falls vorhanden)
+  // on(TaskActions.deleteTaskSuccess, (state, { id }) => ({
+  //   ...state,
+  //   tasks: state.tasks.filter(task => task.id !== id)
+  // }))
 );

@@ -4,7 +4,8 @@ import { TaskCardComponent } from '../task-card/task-card.component';
 import { TaskData } from '../../models/task';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { selectAllTasks } from '../../store/task.selectors';
+import { selectAllTasks } from '../../store/task-store/task.selectors';
+import { loadTasks } from '../../store/task-store/task.actions';
 
 @Component({
   selector: 'app-board-page',
@@ -26,15 +27,19 @@ export class BoardPageComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
+    this.store.dispatch(loadTasks()); // <-- Hier nachziehen für die BoardPage!
+  
     this.tasks$ = this.store.select(selectAllTasks);
-
     this.tasks$.subscribe(tasks => {
+      console.log('TASKS:', tasks);
       this.toDo = tasks.filter(task => task.labels && task.labels.includes('To Do'));
       this.inProgress = tasks.filter(task => task.labels && task.labels.includes('In Progress'));
       this.waitForFeedback = tasks.filter(task => task.labels && task.labels.includes('Wait for Feedback'));
       this.done = tasks.filter(task => task.labels && task.labels.includes('Done'));
     });
   }
+  
+  
 
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;

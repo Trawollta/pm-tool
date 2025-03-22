@@ -30,13 +30,18 @@ export class TaskService {
       id: task.id,
       title: task.title,
       description: task.description,
-      dueDate: task.due_date, // snake_case zu camelCase
+      due_date: task.due_date,
       comments: task.comments,
       assignees: task.assignees,
-      // Falls labels leer oder nicht vorhanden sind, fallback auf den status:
       labels: (task.labels && task.labels.length > 0) ? task.labels : [task.status],
       progress: task.progress,
       creator: task.creator,
+      category_id: task.category_id,
+      category: task.category ? {
+        id: task.category.id,
+        name: task.category.name,
+        color: task.category.color
+      } : null
     };
   }
 }
