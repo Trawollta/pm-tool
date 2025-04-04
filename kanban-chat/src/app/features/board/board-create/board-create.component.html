@@ -1,0 +1,34 @@
+<h2>Neues Board erstellen</h2>
+
+<form (ngSubmit)="createBoard()" #boardForm="ngForm">
+  <label>
+    Board-Name:
+    <input type="text" [(ngModel)]="board.name" name="name" required />
+  </label>
+
+  <label>
+    Beschreibung:
+    <textarea [(ngModel)]="board.description" name="description"></textarea>
+  </label>
+
+  <label>Teilnehmer:</label>
+  <div class="dropdown">
+    <button type="button" (click)="toggleUserDropdown()">
+      Teilnehmer auswählen
+    </button>
+    <div class="dropdown-menu" *ngIf="showUserDropdown">
+      <div *ngFor="let user of (users$ | async)" class="dropdown-item">
+        <label>
+          <input 
+            type="checkbox" 
+            [value]="user.id" 
+            (change)="onUserCheckboxChange($event)"
+            [checked]="isUserSelected(user.id)">
+          {{ user.name }}
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!boardForm.valid">Board erstellen</button>
+</form>

@@ -50,6 +50,7 @@ export class AuthEffects {
       ofType(loadUsers),
       mergeMap(() =>
         this.authService.getUsers().pipe(
+          tap(users => console.log('Geladene Benutzer im Effekt:', users)),
           map(users => loadUsersSuccess({ users })),
           catchError(error => of(loadUsersFailure({ error: error.message })))
         )

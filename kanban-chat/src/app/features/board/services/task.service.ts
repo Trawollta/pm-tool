@@ -41,7 +41,8 @@ export class TaskService {
         id: task.category.id,
         name: task.category.name,
         color: task.category.color
-      } : null
+      } : null,
+      board_id: task.board_id
     };
   }
 }

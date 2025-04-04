@@ -12,6 +12,7 @@ import { Category } from '../../models/category';
 import { createCategory, loadCategories } from '../../store/category-store/caetegory.actions';
 import { createTask } from '../../store/task-store/task.actions';
 import { AppState } from '../../../auth/store/app.state';
+import { Subtask } from '../../models/subtask';
 
 @Component({
   selector: 'app-create-task-dialog',
@@ -34,6 +35,9 @@ export class CreateTaskDialogComponent implements OnInit {
   dropdownOpen = false;
   showAddCategory = false;
   newCategoryName = '';
+  subtasks: Subtask[] = [];
+  newSubtaskTitle: string = '';
+
 
   users$: Observable<User[]>;
   categories$: Observable<Category[]>;
@@ -70,13 +74,15 @@ export class CreateTaskDialogComponent implements OnInit {
       progress: this.taskProgress,
       creator: 1,
       category_id: this.selectedCategory,
-      status: this.selectedLabels[0] || 'To Do'
-
+      status: this.selectedLabels[0] || 'To Do',
+      subtasks: this.subtasks,
+      board_id: 1 // hier kommen die subtasks rein
     };
   
     this.store.dispatch(createTask({ task: newTask }));
     this.resetForm();
   }
+  
 
   toggleAssignee(userId: number, event: Event) {
     const checked = (event.target as HTMLInputElement).checked;
@@ -132,5 +138,16 @@ export class CreateTaskDialogComponent implements OnInit {
     this.selectedAssignees = [];
     this.selectedLabels = [];;
     this.taskProgress = 0;
+  }
+
+  addSubtask() {
+    if (this.newSubtaskTitle.trim()) {
+      this.subtasks.push({ id: 0, task_id: 0, title: this.newSubtaskTitle, done: false });
+      this.newSubtaskTitle = '';
+    }
+  }
+  
+  removeSubtask(index: number) {
+    this.subtasks.splice(index, 1);
   }
 }

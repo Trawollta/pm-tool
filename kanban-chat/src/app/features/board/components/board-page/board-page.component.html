@@ -1,78 +1,95 @@
-<!-- Oberer Bereich mit Titel, Team-Infos und "Add New Member" -->
-<div class="board-header">
-  <h1>Project Board</h1>
-  <div class="board-info">
-    <div class="team-info">
-      <h2>Design Team</h2>
-      <p>Created <span>Feb 23, 2024</span></p>
+<div class="project-board">
+  <!-- Header mit Titel, Board-Erstellung und Board-Infos -->
+  <header class="board-header">
+    <div class="header-top">
+      <div class="board-selector">
+        <label for="boardSelect">Board:</label>
+        <select id="boardSelect" (change)="onBoardSelect($event)">
+          <option *ngFor="let board of boards" [value]="board.id" [selected]="board.id === selectedBoardId">
+            {{ board.name }}
+          </option>
+        </select>
+      </div>
+      <button class="create-board-btn" [routerLink]="['/create-board']">+ New Board</button>
     </div>
-    <div class="privacy-status">
-      <span class="privacy-tag">Private</span>
+    <div class="header-bottom">
+  
+      <div class="board-info">
+        <div class="team-info">
+          <h2>Design Team</h2>
+          <p>Created <span>Feb 23, 2024</span></p>
+        </div>
+        <div class="privacy-status">
+          <span class="privacy-tag">Private</span>
+        </div>
+        <button class="add-member-btn">Add New Member</button>
+      </div>
     </div>
-    <button class="add-member-btn">Add New Member</button>
-  </div> 
-</div>
+  </header>
 
-<!-- Bereich mit dem "Overview"-Dropdown und z. B. Filter-Button -->
-<div class="board-controls">
-  <div class="dropdown">
-    <button class="dropdown-toggle" (click)="toggleDropdown()">
-      Overview
-      <span class="arrow" [class.open]="showDropdown">▼</span>
-    </button>
-    <!-- Dropdown-Menü, erscheint nur, wenn showDropdown = true -->
-    <div class="dropdown-menu" *ngIf="showDropdown">
-      <button>Timeline View</button>
-      <button>Chart View</button>
-      <button>Automate</button>
-      <button>Activity</button>
-      <button>Member</button>
+  <!-- Bereich für Dropdown und Filter -->
+  <nav class="board-controls">
+    <div class="dropdown">
+      <button class="dropdown-toggle" (click)="toggleDropdown()">
+        Overview <span class="arrow" [class.open]="showDropdown">▼</span>
+      </button>
+      <div class="dropdown-menu" *ngIf="showDropdown">
+        <button>Timeline View</button>
+        <button>Chart View</button>
+        <button>Automate</button>
+        <button>Activity</button>
+        <button>Member</button>
+      </div>
     </div>
-  </div>
-
-  <div class="members">
-    <img src="assets/icons/member.svg"> 
-    <span>Members</span>
-  </div>
-  <button class="filter-button">Filter</button>
-</div>
-
-<div class="kanban-board">
-  <div class="kanban-column">
-    <div class="headline">
-      <h3>To Do</h3>
+    <div class="members">
+      <img src="assets/icons/member.svg" alt="Members">
+      <span>Members</span>
     </div>
+    <button class="filter-button">Filter</button>
+  </nav>
 
-    <ng-container *ngFor="let task of toDo">
-      <app-task-card [task]="task"></app-task-card>
-    </ng-container>
-    <button class="add-new-card">Add new</button>
-  </div>
+  <!-- Kanban-Board -->
+  <main class="kanban-board">
+    <section class="kanban-column">
+      <div class="column-header">
+        <h3>To Do</h3>
+      </div>
+      <ng-container *ngFor="let task of toDo">
+        <app-task-card [task]="task"></app-task-card>
+      </ng-container>
+      <button class="add-new-card">Add new</button>
+    </section>
 
-  <!-- Spalte 2: In Progress -->
-  <div class="kanban-column">
-    <h3>In Progress</h3>
-    <ng-container *ngFor="let task of inProgress">
-      <app-task-card [task]="task"></app-task-card>
-    </ng-container>
-    <button class="add-new-card">Add new</button>
-  </div>
+    <section class="kanban-column">
+      <div class="column-header">
+        <h3>In Progress</h3>
+      </div>
+      <ng-container *ngFor="let task of inProgress">
+        <app-task-card [task]="task"></app-task-card>
+      </ng-container>
+      <button class="add-new-card">Add new</button>
+    </section>
 
-  <!-- Spalte 3: Wait for Feedback -->
-  <div class="kanban-column">
-    <h3>Wait for Feedback</h3>
-    <ng-container *ngFor="let task of waitForFeedback">
-      <app-task-card [task]="task"></app-task-card>
-    </ng-container>
-    <button class="add-new-card">Add new</button>
-  </div>
+    <section class="kanban-column">
+      <div class="column-header">
+        <h3>Wait for Feedback</h3>
+      </div>
+      <ng-container *ngFor="let task of waitForFeedback">
+        <app-task-card [task]="task"></app-task-card>
+      </ng-container>
+      <button class="add-new-card">Add new</button>
+    </section>
 
-  <!-- Spalte 4: Done -->
-  <div class="kanban-column">
-    <h3>Done</h3>
-    <ng-container *ngFor="let task of done">
-      <app-task-card [task]="task"></app-task-card>
-    </ng-container>
-    <button class="add-new-card">Add new</button>
-  </div>
+    <section class="kanban-column">
+      <div class="column-header">
+        <h3>Done</h3>
+      </div>
+      <ng-container *ngFor="let task of done">
+        <app-task-card [task]="task"></app-task-card>
+      </ng-container>
+      <button class="add-new-card">Add new</button>
+    </section>
+  </main>
+
+  <app-board-create *ngIf="openCreateBoard"></app-board-create>
 </div>

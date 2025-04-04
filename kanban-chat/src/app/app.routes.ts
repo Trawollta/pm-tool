@@ -10,6 +10,7 @@ import { DirectMessageListComponent } from './features/direct-messages/component
 import { AccountDetailsComponent } from './features/account/components/account-details/account-details.component';
 import { SignUpComponent } from './features/auth/components/sign-up/sign-up.component';
 import { CreateTaskDialogComponent } from './features/board/components/create-task-dialog/create-task-dialog.component';
+import { BoardCreateComponent } from './features/board/board-create/board-create.component';
 
 export const routes: Routes = [
   // Auth-Bereich: Login und eventuell weitere Auth-Seiten
@@ -23,7 +24,7 @@ export const routes: Routes = [
       // { path: 'forgot-password', component: ForgotPasswordComponent },
     ]
   },
-  // Hauptbereich: Seiten mit Header, Footer etc.
+
   {
     path: '',
     component: MainLayoutComponent,
@@ -34,7 +35,8 @@ export const routes: Routes = [
       { path: 'channel-list', component: ChannelListComponent },
       { path: 'channel/:id', component: ChannelChatComponent },
       { path: 'account', component: AccountDetailsComponent },
-      { path: 'create', component: CreateTaskDialogComponent}
+      { path: 'create', component: CreateTaskDialogComponent},
+      { path: 'create-board', component: BoardCreateComponent }
     ]
   }
 ];

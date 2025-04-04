@@ -6,6 +6,7 @@ import { User } from '../../../auth/models/user.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { selectAllUsers } from '../../../auth/store/auth.selectors';
+import { AppState } from '../../../auth/store/app.state';
 
 @Component({
   selector: 'app-create-channel',
@@ -22,12 +23,12 @@ export class CreateChannelComponent {
   selectedUsers: number[] = [];
   users$: Observable<User[]>;
 
-  constructor(private channelService: ChannelService, private store: Store) {
-    this.users$ = this.store.select(selectAllUsers); // User-Daten aus dem Store holen
+  constructor(private channelService: ChannelService, private store: Store<AppState>) {
+    this.users$ = this.store.select(selectAllUsers);
   }
 
   closeOverlay() {
-    this.channelCreated.emit(); // Schließt das Overlay im Parent-Component
+    this.channelCreated.emit();
   }
 
   createChannel() {
