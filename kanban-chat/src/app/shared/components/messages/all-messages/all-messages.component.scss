@@ -1,7 +1,8 @@
 .all-messages {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem; /* Abstand zwischen Nachrichten */
+    gap: 0.5rem;
+    align-items: flex-end;
   
     .message-bubble {
       max-width: 70%;

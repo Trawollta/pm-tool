@@ -48,11 +48,14 @@ export const messagesReducer = createReducer(
   })),
 
   // Nachricht erfolgreich erstellt → an Liste anhängen
-  on(createMessageSuccess, (state, { message }) => ({
-    ...state,
-    messages: [...state.messages, message],
-    loading: false
-  })),
+  on(createMessageSuccess, (state, { message }) => {
+    console.log('✅ Nachricht im Reducer angekommen:', message);
+    return {
+      ...state,
+      messages: [...state.messages, message],
+      loading: false
+    };
+  }),
 
   // Fehler beim Erstellen
   on(createMessageFailure, (state, { error }) => ({

@@ -1,6 +1,5 @@
-<div class="other-user-bubble">
-    <p class="message-text">{{ message.content }}</p>
-    <span class="message-time">{{ message.timestamp | date:'shortTime' }}</span>
-    <span class="message-name">Annette Black</span>
-  </div>
-  
+<div class="message-bubble other-user">
+  <p class="message-text">{{ message.content }}</p>
+  <span class="message-time">{{ message.timestamp | date: 'shortTime' }}</span>
+  <span class="message-name">Annette Black</span>
+</div>

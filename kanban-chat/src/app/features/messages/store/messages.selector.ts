@@ -24,6 +24,6 @@ export const selectMessagesForConversation = (
 ) => createSelector(
   selectAllMessages,
   (messages) => messages.filter(
-    msg => msg.conversationType === conversationType && msg.conversationId === conversationId
+    msg => msg.conversation_type === conversationType && msg.conversation_id === conversationId
   )
 );

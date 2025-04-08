@@ -44,4 +44,20 @@ export class TaskEffects {
       )
     )
   );
+
+  updateTask$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TaskActions.updateTask),
+      mergeMap(({ task }) =>
+        this.taskService.updateTask(task).pipe(
+          // Du kannst optional auch eine Success-Action dispatchen:
+          map((updated: TaskData) => TaskActions.loadTasks()),
+          catchError(error =>
+            of(TaskActions.loadTasksFailure({ error: error.message || 'Error updating task' }))
+          )
+        )
+      )
+    )
+  );
 }
+

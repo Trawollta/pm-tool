@@ -45,4 +45,8 @@ export class TaskService {
       board_id: task.board_id
     };
   }
+
+  updateTask(task: TaskData) {
+    return this.http.put<TaskData>(`/api/tasks/${task.id}`, task);
+  }
 }

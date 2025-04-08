@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectAllUsers } from '../../../auth/store/auth.selectors';
@@ -24,6 +24,8 @@ import { Subtask } from '../../models/subtask';
 export class CreateTaskDialogComponent implements OnInit {
   @Output() taskCreated = new EventEmitter<TaskData>();
   @Output() closeDialog = new EventEmitter<void>();
+  @Input() boardId!: number;
+  // @Input() selectedBoardId!: number;
 
   taskTitle = '';
   taskDescription = '';
@@ -37,6 +39,7 @@ export class CreateTaskDialogComponent implements OnInit {
   newCategoryName = '';
   subtasks: Subtask[] = [];
   newSubtaskTitle: string = '';
+ 
 
 
   users$: Observable<User[]>;
@@ -63,6 +66,7 @@ export class CreateTaskDialogComponent implements OnInit {
 
   onSubmit() {
     if (!this.taskTitle) return;
+    console.log('Task submitted');
   
     const newTask: TaskData = {
       id: 0,
@@ -76,7 +80,7 @@ export class CreateTaskDialogComponent implements OnInit {
       category_id: this.selectedCategory,
       status: this.selectedLabels[0] || 'To Do',
       subtasks: this.subtasks,
-      board_id: 1 // hier kommen die subtasks rein
+      board_id: this.boardId
     };
   
     this.store.dispatch(createTask({ task: newTask }));

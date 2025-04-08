@@ -1,7 +1,7 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideHttpClient } from '@angular/common/http'; // ⬅️ HttpClientProvider hinzugefügt
+import { provideHttpClient, withFetch } from '@angular/common/http'; // ⬅️ HttpClientProvider hinzugefügt
 import { routes } from './app.routes';
 // NgRx Store & Effects
 import { provideStore } from '@ngrx/store';
@@ -21,7 +21,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(),
-    provideHttpClient(),
+    provideHttpClient(withFetch()),
     provideStore({ 
       auth: authReducer,
       channels: channelsReducer,

@@ -27,3 +27,8 @@ export const createTaskFailure = createAction(
   '[Task] Create Task Failure',
   props<{ error: string }>()
 );
+
+export const updateTask = createAction(
+  '[Task] Update Task',
+  props<{ task: TaskData }>()
+);

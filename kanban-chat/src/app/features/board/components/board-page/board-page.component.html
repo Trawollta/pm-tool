@@ -5,15 +5,15 @@
       <div class="board-selector">
         <label for="boardSelect">Board:</label>
         <select id="boardSelect" (change)="onBoardSelect($event)">
-          <option *ngFor="let board of boards" [value]="board.id" [selected]="board.id === selectedBoardId">
+          <option *ngFor="let board of boards" [value]="board.id" [selected]="board.id === selectedBoardId()">
             {{ board.name }}
           </option>
         </select>
       </div>
       <button class="create-board-btn" [routerLink]="['/create-board']">+ New Board</button>
     </div>
+
     <div class="header-bottom">
-  
       <div class="board-info">
         <div class="team-info">
           <h2>Design Team</h2>
@@ -27,69 +27,69 @@
     </div>
   </header>
 
-  <!-- Bereich für Dropdown und Filter -->
-  <nav class="board-controls">
-    <div class="dropdown">
-      <button class="dropdown-toggle" (click)="toggleDropdown()">
-        Overview <span class="arrow" [class.open]="showDropdown">▼</span>
-      </button>
-      <div class="dropdown-menu" *ngIf="showDropdown">
-        <button>Timeline View</button>
-        <button>Chart View</button>
-        <button>Automate</button>
-        <button>Activity</button>
-        <button>Member</button>
-      </div>
-    </div>
-    <div class="members">
-      <img src="assets/icons/member.svg" alt="Members">
-      <span>Members</span>
-    </div>
-    <button class="filter-button">Filter</button>
-  </nav>
-
   <!-- Kanban-Board -->
   <main class="kanban-board">
-    <section class="kanban-column">
-      <div class="column-header">
-        <h3>To Do</h3>
-      </div>
-      <ng-container *ngFor="let task of toDo">
+    <!-- To Do Column -->
+    <section class="kanban-column"
+  (dragover)="allowDrop($event)"
+  (drop)="onDrop($event, 'To Do')">
+      <div class="column-header"><h3>To Do</h3></div>
+      <ng-container *ngFor="let task of toDo()">
         <app-task-card [task]="task"></app-task-card>
       </ng-container>
-      <button class="add-new-card">Add new</button>
+      <button class="add-new-card" (click)="openTaskDialog = true">Add new</button>
     </section>
 
-    <section class="kanban-column">
-      <div class="column-header">
-        <h3>In Progress</h3>
-      </div>
-      <ng-container *ngFor="let task of inProgress">
+    <!-- In Progress Column -->
+    <section class="kanban-column"
+  (dragover)="allowDrop($event)"
+  (drop)="onDrop($event, 'In Progress')">
+      <div class="column-header"><h3>In Progress</h3></div>
+      <ng-container *ngFor="let task of inProgress()">
         <app-task-card [task]="task"></app-task-card>
       </ng-container>
-      <button class="add-new-card">Add new</button>
+      <button class="add-new-card" (click)="openTaskDialog = true">Add new</button>
     </section>
 
-    <section class="kanban-column">
-      <div class="column-header">
-        <h3>Wait for Feedback</h3>
-      </div>
-      <ng-container *ngFor="let task of waitForFeedback">
-        <app-task-card [task]="task"></app-task-card>
+    <!-- Wait for Feedback Column -->
+    <section class="kanban-column"
+  (dragover)="allowDrop($event)"
+  (drop)="onDrop($event, 'Wait for Feedback')">
+      <div class="column-header"><h3>Wait for Feedback</h3></div>
+      <ng-container *ngFor="let task of waitForFeedback()">
+        <app-task-card
+        [task]="task"
+        draggable="true"
+        (dragstart)="onDragStart($event, task)">
+      </app-task-card>
       </ng-container>
-      <button class="add-new-card">Add new</button>
+      <button class="add-new-card" (click)="openTaskDialog = true">Add new</button>
     </section>
 
-    <section class="kanban-column">
-      <div class="column-header">
-        <h3>Done</h3>
-      </div>
-      <ng-container *ngFor="let task of done">
-        <app-task-card [task]="task"></app-task-card>
+    <!-- Done Column -->
+    <section class="kanban-column"
+  (dragover)="allowDrop($event)"
+  (drop)="onDrop($event, 'Done')">
+      <div class="column-header"><h3>Done</h3></div>
+      <ng-container *ngFor="let task of done()">
+        <app-task-card
+  [task]="task"
+  draggable="true"
+  (dragstart)="onDragStart($event, task)">
+</app-task-card>
       </ng-container>
-      <button class="add-new-card">Add new</button>
+      <button class="add-new-card" (click)="openTaskDialog = true">Add new</button>
     </section>
   </main>
 
+  <!-- Optionaler Board Creator -->
   <app-board-create *ngIf="openCreateBoard"></app-board-create>
 </div>
+
+<!-- Task-Dialog -->
+<app-create-task-dialog
+  *ngIf="openTaskDialog"
+  [boardId]="selectedBoardId()"
+  (taskCreated)="onTaskCreated($event)"
+  (closeDialog)="openTaskDialog = false">
+</app-create-task-dialog>

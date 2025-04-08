@@ -1,7 +1,12 @@
+<p *ngIf="true">
+  Debug: {{ messages.length }} Nachrichten geladen
+</p>
+
+
 <div class="all-messages">
   <ng-container *ngIf="messages && messages.length > 0; else noMessages">
     <ng-container *ngFor="let msg of messages; trackBy: trackByMsg">
-      <ng-container *ngIf="msg.senderId === currentUserId; else otherUser">
+      <ng-container *ngIf="msg.sender_id === currentUserId; else otherUser">
         <app-current-user-message [message]="msg"></app-current-user-message>
       </ng-container>
       <ng-template #otherUser>
@@ -14,3 +19,5 @@
     <p>No messages available</p>
   </ng-template>
 </div>
+
+<div #endOfMessages></div>

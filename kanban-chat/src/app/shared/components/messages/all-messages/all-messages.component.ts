@@ -19,11 +19,22 @@ import { OtherUserMessageComponent } from '../other-user-message/other-user-mess
 export class AllMessagesComponent  {
   @Input() messages: Message[] = [];
   @Input() currentUserId!: number;
+  @ViewChild('endOfMessages') endOfMessages!: ElementRef;
 
 
   trackByMsg(index: number, msg: Message): number {
     return msg.id; 
     // oder ein anderer eindeutiger Wert, z. B. msg.timestamp
+  }
+
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
+  }
+  
+  scrollToBottom(): void {
+    try {
+      this.endOfMessages.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    } catch (err) {}
   }
 
 }

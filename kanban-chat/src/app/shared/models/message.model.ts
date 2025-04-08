@@ -1,8 +1,8 @@
 export interface Message {
-    id: number;
-    senderId: number;
-    content: string;
-    conversationType: 'channel' | 'direct';
-    conversationId: number;
-    timestamp: string;
-  }
+  id: number;
+  sender_id: number; // ⬅️ statt senderId
+  content: string;
+  conversation_type: 'channel' | 'direct'; // ⬅️ statt conversationType
+  conversation_id: number; // ⬅️ statt conversationId
+  timestamp: string;
+}

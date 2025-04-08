@@ -2,13 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs';
 import { AllMessagesComponent } from '../../../../shared/components/messages/all-messages/all-messages.component';
 import { Channel } from '../../models/channels.model';
 import { AppState } from '../../../auth/store/app.state';
 import { selectChannelById } from '../../store/channels.selector';
 import { loadMessages } from '../../../messages/store/messages.actions';
-import { selectMessagesForConversation } from '../../../messages/store/messages.selector';
+import { selectAllMessages } from '../../../messages/store/messages.selector';
 import { TextareaChatThreadComponent } from '../../../../shared/components/textarea-chat-thread/textarea-chat-thread.component';
 import { Message } from '../../../../shared/models/message.model';
 
@@ -25,7 +25,6 @@ export class ChannelChatComponent implements OnInit, OnDestroy {
   messages$!: Observable<Message[]>;
   private routeSub!: Subscription;
   currentUserId = 1;
-  
 
   constructor(private route: ActivatedRoute, private store: Store<AppState>) {}
 
@@ -34,20 +33,29 @@ export class ChannelChatComponent implements OnInit, OnDestroy {
       const id = params.get('id');
       if (id) {
         this.channelId = Number(id);
-        console.log('Selected Channel ID:', this.channelId);
-        
-        // Hole den Channel aus dem Store
+        console.log('📡 Selected Channel ID:', this.channelId);
+
         this.channel$ = this.store.select(selectChannelById(this.channelId));
-  
-        // Dispatch die Action, um Nachrichten zu laden, falls nötig
-        this.store.dispatch(loadMessages({ conversationType: 'channel', conversationId: this.channelId }));
-  
-        // Verwende den Selector, um die Nachrichten für diesen Channel zu filtern
-        this.messages$ = this.store.select(selectMessagesForConversation('channel', this.channelId));
+
+        this.store.dispatch(loadMessages({
+          conversationType: 'channel',
+          conversationId: this.channelId
+        }));
+
+        this.messages$ = this.store.select(selectAllMessages).pipe(
+          map(messages => {
+            console.log('💬 Alle Nachrichten im Store:', messages);
+            const filtered = messages.filter(msg =>
+              msg.conversation_type === 'channel' &&
+              Number(msg.conversation_id) === this.channelId // Sicherheitshalber casten
+            );
+            console.log(`📥 Gefilterte Nachrichten für Channel ID ${this.channelId}:`, filtered);
+            return filtered;
+          })
+        );
       }
     });
   }
-  
 
   ngOnDestroy(): void {
     this.routeSub.unsubscribe();

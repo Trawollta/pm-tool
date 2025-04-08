@@ -1,3 +1,7 @@
+<!-- <p *ngIf="messages$ | async as messages">
+  Debug: {{ messages.length }} Nachrichten geladen
+</p> -->
+
 <div class="channel-chat">
   <div class="channel-header">
     
@@ -11,5 +15,9 @@
     [currentUserId]="currentUserId">
   </app-all-messages>
 
-  <app-textarea-chat-thread></app-textarea-chat-thread>
+  <app-textarea-chat-thread
+  [conversationType]="'channel'"
+  [conversationId]="channelId"
+  [currentUserId]="currentUserId">
+</app-textarea-chat-thread>
 </div>
