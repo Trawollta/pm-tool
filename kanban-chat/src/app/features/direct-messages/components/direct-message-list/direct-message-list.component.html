@@ -1,6 +1,15 @@
 <div class="messenger">
     <button class="newChat">
-        <img src="assets/icons/newChat.svg">
-        <span class="name">New Chat</span>
+      <img src="assets/icons/newChat.svg">
+      <span class="name">New Chat</span>
     </button>
-</div>
+  
+    <div class="user-list">
+        <ng-container *ngIf="users$ | async as users">
+          <div *ngFor="let user of users" class="user-entry" [routerLink]="['/direct', user.id]">
+            <span>{{ user.name }}</span>
+          </div>
+        </ng-container>
+      </div>
+  </div>
+  

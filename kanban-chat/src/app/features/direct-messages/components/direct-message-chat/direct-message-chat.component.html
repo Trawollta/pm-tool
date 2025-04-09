@@ -1,1 +1,17 @@
-<p>direct-message-chat works!</p>
+<div class="direct-chat">
+    <div class="chat-header">
+      <h3 *ngIf="user$ | async as user">Chat mit {{ user.name }}</h3>
+    </div>
+  
+    <app-all-messages
+      [messages]="(messages$ | async) ?? []"
+      [currentUserId]="currentUserId">
+    </app-all-messages>
+  
+    <app-textarea-chat-thread
+      [conversationType]="'direct'"
+      [conversationId]="userId"
+      [currentUserId]="currentUserId">
+    </app-textarea-chat-thread>
+  </div>
+  

@@ -11,6 +11,7 @@ import { AccountDetailsComponent } from './features/account/components/account-d
 import { SignUpComponent } from './features/auth/components/sign-up/sign-up.component';
 import { CreateTaskDialogComponent } from './features/board/components/create-task-dialog/create-task-dialog.component';
 import { BoardCreateComponent } from './features/board/board-create/board-create.component';
+import { DirectMessageChatComponent } from './features/direct-messages/components/direct-message-chat/direct-message-chat.component';
 
 export const routes: Routes = [
   // Auth-Bereich: Login und eventuell weitere Auth-Seiten
@@ -32,6 +33,7 @@ export const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'board', component: BoardPageComponent },
       { path: 'direct-messages', component: DirectMessageListComponent },
+      { path: 'direct/:id', component: DirectMessageChatComponent },
       { path: 'channel-list', component: ChannelListComponent },
       { path: 'channel/:id', component: ChannelChatComponent },
       { path: 'account', component: AccountDetailsComponent },
